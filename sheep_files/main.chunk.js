@@ -85,7 +85,14 @@ async function initData() {
 
         document.getElementById("myStake").innerText=myStake;
         document.getElementById("myreward").innerText=myreward+" BUSD";
-        document.getElementById("noclaim").innerText=claim+" BUSD";      
+        document.getElementById("noclaim").innerText=claim+" BUSD"; 
+        
+        let isApprove = await nftContract.methods.isApprovedForAll(web_addr,pool_addr).call();
+        if(!isApprove){
+            document.getElementById("sbtn").innerText="Approve"; 
+        }else{
+            document.getElementById("sbtn").innerText="Stake";
+        }
     }
 }
 
