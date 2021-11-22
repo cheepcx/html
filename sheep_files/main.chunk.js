@@ -58,8 +58,9 @@ async function initData() {
     let totalSupply = await poolContract.methods.totalSupply().call();
     let perreward = await poolContract.methods.rewardRate().call();
     if(totalSupply!=0 && perreward!=0){
-        let y = perreward*31536000;
-        document.getElementById("apy").innerText= BigNumber(y/(totalSupply*100)*100).toFixed(0)+"%";
+        let y =  BigNumber(perreward).dividedBy(pow18).multipliedBy(31536000);
+        totalSupply = BigNumber(totalSupply).multipliedBy(100);
+        document.getElementById("apy").innerText= y.dividedBy(totalSupply).multipliedBy(100).toFixed(0)+"%";
     }
     //my
     if(web_addr){
