@@ -124,6 +124,13 @@ async function stake(){
     let count = document.getElementById("stake-input").value;
     if(count==""){alert("Input stake count");return;}
     let nftContract = new web_write.eth.Contract(nft_abi, nft_token);
+
+    let nfts = await nftContract.methods.balanceOf(web_addr).call();
+    if(parseInt(count)>nfts){
+        alert("Your balance is "+nfts+" can not stake "+count);
+        return;
+    }
+    
     let isApprove = await nftContract.methods.isApprovedForAll(web_addr,pool_addr).call();
     if(!isApprove){
         await nftContract.methods.setApprovalForAll(pool_addr,true).send({from:web_addr});
