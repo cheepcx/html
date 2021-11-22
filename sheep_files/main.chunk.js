@@ -115,8 +115,15 @@ async function unstake(){
     if(web_addr==""){alert("Connect your wallet");return;}
     let count = document.getElementById("stake-input").value;
     if(count==""){alert("Input unstake count");return;}
-    let tokenRewardContract = new web_write.eth.Contract(pool_abi, pool_addr);
-    await tokenRewardContract.methods.withdrawMore(count).send({from:web_addr});
+
+    let poolContract = new web_write.eth.Contract(pool_abi, pool_addr);
+    let poolinfo = await poolContract.methods.getAccountInfo(web_addr).call();
+    let myStake = poolinfo[0];
+    if(parseInt(count)>myStake){
+        alert("Your stake is "+myStake+" can not unstake "+count);
+        return;
+    }
+    await poolContract.methods.withdrawMore(count).send({from:web_addr});
 }
 
 async function stake(){
