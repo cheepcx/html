@@ -75,7 +75,7 @@ async function initData() {
         penddings = BigNumber(penddings).dividedBy(pow18);
         document.getElementById("penddings").innerText=penddings.toFixed(0)+" BUSD";
 
-        let nfts = await poolContract.methods.balanceOf(web_addr).call();
+        let nfts = await nftContract.methods.balanceOf(web_addr).call();
         document.getElementById("nfts").innerText=nfts;
         
         let poolinfo = await poolContract.methods.getAccountInfo(web_addr).call();
