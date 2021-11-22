@@ -81,8 +81,8 @@ async function initData() {
         
         let poolinfo = await poolContract.methods.getAccountInfo(web_addr).call();
         let myStake = poolinfo[0];
-        let myreward = poolinfo[1];
-        let claim = poolinfo[2];
+        let myreward = BigNumber(poolinfo[1]).dividedBy(pow18);
+        let claim = BigNumber(poolinfo[2]).dividedBy(pow18);
 
         document.getElementById("myStake").innerText=myStake;
         document.getElementById("myreward").innerText=myreward+" BUSD";
