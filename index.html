@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="icon" href="images/logo2.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>SHEEP</title>
+  <link rel="stylesheet" href="sheep_files/main.chunk.css">
+</head>
+<body>
+<div id="root">
+  <div class="wrapper pt-3">
+    <img src="images/title.png" style="width: 100%"/>
+  </div>
+  <div class="mint mb-5">
+    <div class="wrapper">
+      <div class="wrapper_box" style="padding-bottom: 20px">
+        <img class="mint_bottom_bg" src="images/mint_bg.png"/>
+        <div class="display_f flex-col" >
+          <div class="flex_1 text-center p-3 mt-4 btn-cursor btn-bg" style="margin-left: 20px;margin-right: 20px;">
+            <a href="javascript:initWeb()">
+              <img src="images/2.png" style="vertical-align:middle;width:24px;height:24px;margin-right:6px"/>
+              <span class="text-gray text-lg" id="web_addr">Connect</span>
+            </a>
+          </div>
+          
+          <div class="flex_1 text-center p-3 mt-4 btn-cursor btn-bg" style="margin-left: 20px;margin-right: 20px;">
+            <a href="whitepaper.html" target="_blank">
+              <img src="images/1.png" style="vertical-align:middle;width:24px;height:24px;margin-right:6px"/>
+              <span class="text-gray text-lg">Whitepaper</span>
+            </a>
+          </div>
+        
+          <div class="flex_1 text-center p-3 mt-4 btn-cursor btn-bg" style="margin-left: 20px;margin-right: 20px;">
+            <a href="https://pinksale.finance" target="_blank">
+              <img src="images/4.png" style="vertical-align:middle;width:24px;height:24px;margin-right:6px"/>
+              <span class="text-gray text-lg">Pre sale</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="border_box" style="margin-top:40px">
+          <h3 class="text-3xl text_black" style="font-size:20px;width: 100%;margin-bottom: 20px;">SHEEP TOKEN INFO</h3>
+          
+          <div class="display_f flex-col mt-6" style="margin: 0;padding: 0;">
+            <div class="flex_1" >
+              <span class="text-sm text_black">supply</span>
+              <p class="pt-1 text-xl text-red" style="margin-top:5px">1000000B</p>
+            </div>
+            <div class="flex_1">
+              <span class="text-sm text_black">burn</span>
+              <p class="pt-1 text-xl text-red" id="burn_quantity" style="margin-top:5px">-</p>
+            </div>
+          </div>
+          <div class="display_f flex-col mt-6" style="margin: 0;padding: 0;">
+            <div class="flex_1">
+              <span class="text-sm text_black">Hold Total Reward</span>
+              <p class="pt-1 text-xl text-red" id="busd_quantity" style="margin-top:5px">- BUSD</p>
+            </div>
+            <div class="flex_1">
+              <span class="text-sm text_black">NFT Total Reward</span>
+              <p class="pt-1 text-xl text-red" id="nft_quantity" style="margin-top:5px">- BUSD</p>
+            </div>
+          </div>
+          
+          <div class="display_f flex-col items-center justify-between mt-6 pt-3" style="margin-top: 10px;">
+            <h3 class="text-3xl text_black" style="font-size:20px;width: 100%;">SHEEP NFT MINT</h3>
+            
+          </div>
+          
+          <div class="display_f flex-col items-center mt-4">
+            <div class="input_box flex_1">
+              <input
+                  value="1"
+                  style="font-size: 14px;"
+                  id="mint-input" class="mint_input text-red text-xl pl-4"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Input mint count"
+                  oninput="inputMint()"
+              >
+            </div>
+            <div style="width: 20px;height: 20px"></div>
+            <div class="mint_btn btn-cursor mint_btn176 mint_btn56 btn_bg btn-w100" onclick="mint()">MINT</div>
+          </div>
+          
+          <div class="mt-6">
+            <span class="text-xl text_black mr-10" id="cost" style="font-size:14px;margin-left: 5px;">COST: 0.2 BNB  </span>
+            <span class="text-xl text_black" id="minted" style="font-size:14px">MINTED -/10000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="wrapper">
+      <div class="wrapper_box">
+        <img src="images/24.png" style="width: 250px"/>
+      </div>
+    </div>
+  </div>
+  <div class="clam pt-3">
+    <div class="wrapper">
+      <div class="wrapper_box">
+        <img class="clam_top_bg" src="images/clam_top.png"/>
+        <img class="clam_bottom_bg" src="images/clam_bottom.png"/>
+        <div class="border_box ">
+          <div class="display_f flex-col items-center justify-between" style="margin-bottom:30px">
+            <h3 class="text-3xl text_black" style="font-size:20px;width: 100%;">HOLD SHEEP FARM</h3>
+          </div>
+          <div class="display_f flex-col mt-6" style="margin: 0;padding: 0;">
+            <div class="flex_1" style="padding:5px">
+              <span class="text-sm text_black">MY SHEEP TOKEN</span>
+              <p class="pt-1 text-xl text-red" id="my_tokens" style="margin-top:5px">-</p>
+            </div>
+            <div class="flex_1" style="padding:5px">
+              <span class="text-sm text_black">MY EARNED</span>
+              <p class="pt-1 text-xl text-red" id="my_earned" style="margin-top:5px">- BUSD</p>
+            </div>
+            <div class="flex_1" style="padding:5px">
+              <span class="text-sm text_black">TOTAL EARNED</span>
+              <p class="pt-1 text-xl text-red" id="total_earn" style="margin-top:5px">- BUSD</p>
+            </div>
+          </div>
+          <div class="display_f flex-col" >
+            <div class="flex_1 mt-6" style="margin-top: 5px;">
+              <span class="text-sm text_black">Pending rewards</span>
+              <p class="pt-1 text-xl text-red" id="penddings" style="margin-top:5px">- BUSD</p>
+            </div>
+            <div class="flex_1 mt-6" style="margin-top: 5px;">
+              <div class="mint_btn btn-cursor mint_btn118 mint_btn56 btn_bg btn-w100" onclick="claim()">Claim</div>
+            </div>
+            <div class="flex_1"></div>
+          </div>
+          <h3 class="text-3xl text_black" style="margin-top:50px;font-size:20px;width: 100%;">SHEEP NFT FARM</h3>
+          <div class="display_f flex-col items-center mt-4" style="margin-bottom:20px">
+            <div class="input_box flex_1">
+              <input
+                  style="font-size: 14px;"
+                  id="stake-input" class="mint_input text-red text-xl pl-4"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Input stake or unstake quantity" 
+              >
+            </div>
+            <div style="width: 20px;height: 20px"></div>
+            <div class="mint_btn btn-cursor mint_btn106 mint_btn56 btn_bg btn-w100" onclick="stake()" id="sbtn">stake</div>
+            <div style="width: 10px;height: 10px"></div>
+            <div class="mint_btn btn-cursor mint_btn106 mint_btn56 btn-w100" onclick="unstake()">unstake</div>
+          </div>
+          <div class="display_f flex-col mt-6" style="margin: 0;padding: 0;">
+            <div class="flex_1">
+              <span class="text-sm text_black">MY SHEEP NFT</span>
+              <p class="pt-1 text-xl text-red" id="nfts" style="margin-top:5px">-</p>
+            </div>
+            <div class="flex_1">
+              <span class="text-sm text_black">MY Staked</span>
+              <p class="pt-1 text-xl text-red" id="myStake" style="margin-top:5px">-</p>
+            </div>
+            <div class="flex_1">
+              <span class="text-sm text_black">apy</span>
+              <p class="pt-1 text-xl text-red" id="apy" style="margin-top:5px">- %</p>
+            </div>
+          </div>
+          <div class="display_f flex-col mt-6" style="margin: 0;padding: 0;">
+            <div class="flex_1">
+              <span class="text-sm text_black">MY EARNED</span>
+              <p class="pt-1 text-xl text-red" id="myreward" style="margin-top:5px">- BUSD</p>
+            </div>
+            <div class="flex_1">
+              <span class="text-sm text_black">Pending rewards</span>
+              <p class="pt-1 text-xl text-red" id="noclaim" style="margin-top:5px">- BUSD</p>
+            </div>
+            <div class="flex_1">
+              <div class="mint_btn btn-cursor mint_btn118 mint_btn56 btn_bg btn-w100" onclick="claimPool()">CLAIM</div>
+            </div>
+          </div>
+        </div>
+        <div class="btn_w242 text-center p-3 btn-cursor btn-bg">
+          <a href="https://t.me/sheep_cx" target="_blank">
+            <img src="images/3.png" style="vertical-align:middle;width:24px;height:24px;margin-right:6px"/>
+            <span class="text-gray text-lg">telegram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">Copyright © 2021. All rights reserved</div>
+  <div class="w-full pt-3">
+    <img src="images/555.png" style="width: 100%"/>
+  </div>
+</div>
+<script src="sheep_files/bignumber.js"></script>
+<script src="sheep_files/web3.min.js"></script>
+<script src="sheep_files/main.chunk.js"></script>
+</body>
+</html>
